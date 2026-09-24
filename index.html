@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Määäphone 17 Pro Määx – Sheep Association</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #f7f3ec;
+    --dark: #1a1a18;
+    --wool-white: #fdfaf5;
+    --wool-dark: #2b2b28;
+    --accent: #8c6e3f;
+    --accent-light: #c9a96e;
+    --green: #4a6741;
+    --light-border: #ddd5c3;
+    --case: #e9e3d6;          /* wird vom Farbwaehler gesetzt */
+    --case-deep: #cfc6b2;
+    --wall-1: #f0e9db;
+    --wall-2: #cbb98f;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--dark);
+    font-family: 'Lora', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
+
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* ── HEADER ─────────────────────────────── */
+  header {
+    background: var(--wool-white);
+    border-bottom: 2px solid var(--light-border);
+    padding: 2.2rem 3rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+  }
+
+  .header-sheep { display: flex; gap: 0.4rem; flex-shrink: 0; }
+  .sheep-icon { width: 72px; height: 72px; object-fit: contain; }
+  .sheep-white { filter: drop-shadow(2px 3px 6px rgba(0,0,0,0.12)); }
+  .sheep-black { filter: drop-shadow(2px 3px 6px rgba(0,0,0,0.25)); }
+
+  .header-text { display: flex; flex-direction: column; }
+
+  .header-sub {
+    font-style: italic;
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--dark);
+  }
+
+  .header-footer-label {
+    font-size: 0.72rem;
+    color: #aaa;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+
+  /* ── HERO ───────────────────────────────── */
+  .hero {
+    background: var(--wool-dark);
+    color: var(--wool-white);
+    padding: 3.5rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-style: italic;
+    font-size: 0.8rem;
+    color: var(--accent-light);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.8rem;
+  }
+
+  .hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(2.4rem, 6vw, 3.9rem);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    margin-bottom: 1rem;
+  }
+
+  .hero-claim {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: #ddd6c7;
+    max-width: 30em;
+    margin-bottom: 1.6rem;
+  }
+
+  .hero-price {
+    font-size: 0.95rem;
+    color: #cfc6b2;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 1.1rem;
+  }
+
+  .hero-price b {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: var(--wool-white);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  /* Phone-Mockup */
+  .phone-stage { display: flex; flex-direction: column; align-items: center; gap: 1.4rem; }
+
+  .phone {
+    width: 224px;
+    aspect-ratio: 9 / 19;
+    border-radius: 34px;
+    padding: 9px;
+    background: linear-gradient(150deg, var(--case) 0%, var(--case-deep) 55%, var(--case) 100%);
+    box-shadow: 0 22px 50px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(255,255,255,0.35);
+    transition: background 0.35s ease;
+  }
+
+  .phone-screen {
+    height: 100%;
+    border-radius: 26px;
+    background: linear-gradient(170deg, var(--wall-1), var(--wall-2));
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    transition: background 0.35s ease;
+  }
+
+  .dynamic-weide {
+    position: absolute;
+    top: 10px; left: 50%;
+    transform: translateX(-50%);
+    width: 74px; height: 19px;
+    border-radius: 12px;
+    background: #1b1b19;
+  }
+
+  .screen-clock {
+    position: absolute;
+    top: 38px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #3f3a30;
+    opacity: 0.85;
+  }
+
+  .screen-date {
+    position: absolute;
+    top: 82px; left: 0; right: 0;
+    text-align: center;
+    font-size: 0.66rem;
+    font-style: italic;
+    color: #5c5546;
+  }
+
+  .phone-sheep { width: 82%; margin-bottom: 42px; }
+
+  .dock {
+    position: absolute;
+    bottom: 12px; left: 12px; right: 12px;
+    height: 26px;
+    border-radius: 9px;
+    background: rgba(255,255,255,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 0.6rem;
+    color: #4a4436;
+  }
+
+  .colors { display: flex; gap: 0.55rem; }
+
+  .color-dot {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.15s, border-color 0.15s;
+  }
+
+  .color-dot:hover { transform: scale(1.12); }
+  .color-dot[aria-pressed="true"] { border-color: var(--accent-light); transform: scale(1.12); }
+
+  .color-name {
+    font-size: 0.78rem;
+    font-style: italic;
+    color: #cfc6b2;
+    min-height: 1.2em;
+  }
+
+  /* ── MAIN ───────────────────────────────── */
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 3.2rem 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .section-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--light-border); }
+
+  /* Highlight-Karten */
+  .highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.1rem;
+  }
+
+  .hl-card {
+    background: var(--wool-white);
+    border: 1.5px solid var(--light-border);
+    border-radius: 3px;
+    padding: 1.4rem 1.5rem;
+    position: relative;
+  }
+
+  .hl-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--accent);
+    border-radius: 3px 0 0 3px;
+  }
+
+  .hl-value {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.75rem;
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+  }
+
+  .hl-key { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.35rem; }
+  .hl-note { font-size: 0.8rem; font-style: italic; color: #7d7768; line-height: 1.55; }
+
+  /* Feature-Bloecke */
+  .feature {
+    background: var(--wool-white);
+    border: 1.5px solid var(--light-border);
+    border-radius: 3px;
+    padding: 1.6rem 1.9rem;
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+  }
+
+  .feature + .feature { margin-top: 1.1rem; }
+  .feature img { width: 96px; flex-shrink: 0; }
+  .feature.flip { flex-direction: row-reverse; }
+
+  .feature h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.45rem;
+  }
+
+  .feature p { font-size: 0.95rem; line-height: 1.8; color: #3a3830; }
+
+  /* Spec-Tabelle */
+  .spec-group {
+    background: var(--wool-white);
+    border: 1.5px solid var(--light-border);
+    border-radius: 3px;
+    padding: 1.4rem 1.8rem;
+  }
+
+  .spec-group + .spec-group { margin-top: 1rem; }
+
+  .spec-group h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--light-border);
+  }
+
+  .spec-row {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    border-bottom: 1px dotted #e6dfd0;
+  }
+
+  .spec-row:last-child { border-bottom: none; }
+  .spec-row dt { font-weight: 600; color: #4a453a; }
+  .spec-row dd { color: #3a3830; }
+  .spec-row dd em { color: #8a8375; font-size: 0.86em; }
+
+  .abbr {
+    border-bottom: 1px dashed var(--accent-light);
+    cursor: help;
+    font-style: normal;
+  }
+
+  /* Modellvergleich */
+  .table-scroll { overflow-x: auto; }
+
+  table.models {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+    background: var(--wool-white);
+    border: 1.5px solid var(--light-border);
+    font-size: 0.9rem;
+  }
+
+  table.models th, table.models td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee7d8;
+  }
+
+  table.models thead th {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    background: #f2ece0;
+    border-bottom: 2px solid var(--light-border);
+  }
+
+  table.models thead th:first-child { font-family: 'Lora', serif; font-size: 0.78rem; font-weight: 600; color: #8a8375; }
+  table.models tbody th { font-weight: 600; color: #4a453a; width: 30%; }
+  table.models .pick { background: #f7f1e4; }
+  table.models tr:last-child td, table.models tr:last-child th { border-bottom: none; }
+
+  .price-row td { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.05rem; }
+
+  /* Kaufzeile */
+  .buybar {
+    background: var(--wool-dark);
+    color: var(--wool-white);
+    border-radius: 3px;
+    padding: 1.6rem 1.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .buybar p { font-size: 0.92rem; line-height: 1.7; color: #d8d1c2; max-width: 34em; }
+  .buybar strong { color: var(--wool-white); }
+
+  .btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Lora', serif;
+    font-size: 0.92rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+
+  .btn:hover { background: #a08149; }
+
+  .footnotes {
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: #8a8375;
+    font-style: italic;
+  }
+
+  .footnotes li { margin-bottom: 0.3rem; list-style: none; }
+
+  footer {
+    background: var(--wool-dark);
+    color: #bbb;
+    text-align: center;
+    padding: 1.6rem;
+    font-style: italic;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+  }
+
+  footer span { color: var(--accent-light); }
+
+  /* ── RESPONSIVE ─────────────────────────── */
+  @media (max-width: 760px) {
+    header { padding: 1.4rem; gap: 1rem; }
+    .sheep-icon { width: 54px; height: 54px; }
+    .header-title { font-size: 1.7rem; }
+    .hero { padding: 2.4rem 1.2rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2.2rem; }
+    .phone-stage { order: -1; }
+    main { padding: 2.2rem 1.2rem 3rem; }
+    .feature, .feature.flip { flex-direction: column; text-align: center; gap: 1rem; padding: 1.4rem; }
+    .spec-row { grid-template-columns: 1fr; gap: 0.1rem; }
+    .spec-group { padding: 1.2rem 1.3rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-sheep">
+    <img class="sheep-icon sheep-white" src="images/sheep_white_transparent.png" alt="Weisses Schaf" />
+    <img class="sheep-icon sheep-black" src="images/sheep_black_transparent.png" alt="Schwarzes Schaf" />
+  </div>
+  <div class="header-text">
+    <span class="header-sub">Shepherd German-speaking Switzerland</span>
+    <h1 class="header-title">Määäphone</h1>
+    <span class="header-footer-label">Produktinformation · Herde 2026</span>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Neu in der Herde</p>
+      <h2>Määäphone 17<br />Pro Määx</h2>
+      <p class="hero-claim">
+        Wollitan-Gehäuse, der schnellste Wiederkäu-Chip, den wir je verbaut haben,
+        und ein Akku, der den ganzen Alpauftrieb durchhält. Blökt in 4K.
+      </p>
+      <div class="hero-price">
+        <b>ab CHF 1'599.–</b>
+        oder CHF 66.60/Mt. im Weide-Abo über 24 Monate<sup>1</sup>
+      </div>
+    </div>
+
+    <div class="phone-stage">
+      <div class="phone" id="phone">
+        <div class="phone-screen">
+          <div class="dynamic-weide" title="Dynamic Weide"></div>
+          <div class="screen-clock">09:41</div>
+          <div class="screen-date">Weidetag 4 · 18 °C · leichter Wind</div>
+          <img class="phone-sheep" src="images/sheep_white_transparent.png" alt="Schaf als Hintergrundbild" id="phoneSheep" />
+          <div class="dock"><span>Stall</span><span>Määri</span><span>Blöök</span><span>Karte</span></div>
+        </div>
+      </div>
+      <div class="colors" role="group" aria-label="Fleece-Farbe wählen">
+        <button class="color-dot" style="background:#f3efe6" data-name="Merinoweiss" data-case="#efe9dc" data-deep="#d5cdbb" data-w1="#f3ecdd" data-w2="#cdbb92" data-sheep="white" aria-pressed="true"></button>
+        <button class="color-dot" style="background:#2a2a27" data-name="Schwarzes Schaf" data-case="#33322d" data-deep="#1c1c19" data-w1="#5a5347" data-w2="#211f1b" data-sheep="black" aria-pressed="false"></button>
+        <button class="color-dot" style="background:#c9a96e" data-name="Hafergold" data-case="#c9a96e" data-deep="#a2854f" data-w1="#f2e3c4" data-w2="#c19a5b" data-sheep="white" aria-pressed="false"></button>
+        <button class="color-dot" style="background:#4a6741" data-name="Weidegrün" data-case="#4a6741" data-deep="#33492d" data-w1="#dfe7d8" data-w2="#7d9a71" data-sheep="white" aria-pressed="false"></button>
+        <button class="color-dot" style="background:#8c8578" data-name="Wollitan Natur" data-case="#9b9487" data-deep="#726c61" data-w1="#e6e2da" data-w2="#a49c8e" data-sheep="black" aria-pressed="false"></button>
+      </div>
+      <p class="color-name" id="colorName">Merinoweiss</p>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <!-- Highlights -->
+  <section>
+    <p class="section-label">Auf einen Blick</p>
+    <div class="highlights">
+      <div class="hl-card">
+        <div class="hl-value">W18 Pro</div>
+        <div class="hl-key">Bäänic Chip</div>
+        <div class="hl-note">6-Kern-CPU, davon 2 Wiederkäu- und 4 Graskerne</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-value">16 GB</div>
+        <div class="hl-key">BAAM-Arbeitsspeicher</div>
+        <div class="hl-note">Genug für 40 gleichzeitig offene Weiden</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-value">6,9″</div>
+        <div class="hl-key">Super Merino XDR</div>
+        <div class="hl-note">ProMäh 1–120 Hz, 2'000 Nits auf der Mittagsalp</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-value">5'400 mÄh</div>
+        <div class="hl-key">Wollakku</div>
+        <div class="hl-note">Bis 33 Stunden Blöök-Wiedergabe</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-value">48 MW</div>
+        <div class="hl-key">Wollwinkel-Kamera</div>
+        <div class="hl-note">Megawoll statt Megapixel — schärfer als jede Schur</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-value">1 TW</div>
+        <div class="hl-key">Weidespeicher</div>
+        <div class="hl-note">Ein Terawoll, also rund 280'000 Heufotos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section>
+    <p class="section-label">Warum es sich lohnt</p>
+
+    <div class="feature">
+      <img src="images/sheep_black_transparent.png" alt="Schwarzes Schaf" />
+      <div>
+        <h3>Wiederkäuen war noch nie so schnell</h3>
+        <p>
+          Der W18 Pro Bäänic verarbeitet Gras, Heu und Gedanken gleichzeitig. Seine CPU
+          (Chew Processing Unit) kaut sechsspurig, die GPU (Grass Processing Unit) rendert
+          jeden Halm einzeln, und die NPU (Neural Pasture Unit) erkennt den Hund, bevor er bellt.
+        </p>
+      </div>
+    </div>
+
+    <div class="feature flip">
+      <img src="images/sheep_white_transparent.png" alt="Weisses Schaf" />
+      <div>
+        <h3>Fotos, die nach frischem Gras riechen</h3>
+        <p>
+          Drei Objektive, ein Ziel: Wolle, die nach Wolle aussieht. Der Nachtweide-Modus holt
+          Details aus dem dunkelsten Stall, und der Porträtmodus trennt Schaf von Zaun —
+          auch wenn beide flauschig sind.
+        </p>
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="images/sheep_black_transparent.png" alt="Schwarzes Schaf" />
+      <div>
+        <h3>Hält länger als der Alpauftrieb</h3>
+        <p>
+          5'400 mÄh, geladen über UWB-C oder kabellos per WollSafe. In 30 Minuten
+          Schnellweide-Laden wieder bei 50 % — ungefähr die Zeit, die eine Herde für
+          150 Höhenmeter braucht.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technische Daten -->
+  <section>
+    <p class="section-label">Technische Daten · Määäphone 17 Pro Määx</p>
+
+    <div class="spec-group">
+      <h3>Rechenleistung</h3>
+      <dl>
+        <div class="spec-row"><dt>Chip</dt><dd>W18 Pro Bäänic, 2 nm Wollitan-Fertigung</dd></div>
+        <div class="spec-row"><dt><abbr class="abbr" title="Chew Processing Unit">CPU</abbr> — Chew Processing Unit</dt><dd>6 Kerne: 2 × Wiederkäu-Kern 4,1 GHz, 4 × Graskern 2,6 GHz <em>(kaut, bis alles verdaut ist)</em></dd></div>
+        <div class="spec-row"><dt><abbr class="abbr" title="Grass Processing Unit">GPU</abbr> — Grass Processing Unit</dt><dd>6 Kerne, Halm-für-Halm-Rendering, Hardware-Rasenverfolgung</dd></div>
+        <div class="spec-row"><dt><abbr class="abbr" title="Neural Pasture Unit">NPU</abbr> — Neural Pasture Unit</dt><dd>38 Billionen Blöök pro Sekunde</dd></div>
+        <div class="spec-row"><dt><abbr class="abbr" title="Ruminant Access Memory">RAM</abbr> — Ruminant Access Memory</dt><dd>16 GB BAAM, mähfach belegbar</dd></div>
+        <div class="spec-row"><dt>Weidespeicher</dt><dd>256 GW / 512 GW / 1 TW <em>(Gigawoll, Terawoll — nicht erweiterbar, Schafe verlieren Karten)</em></dd></div>
+        <div class="spec-row"><dt>Leistungsindex</dt><dd>GräsBench Multi-Kern 9'240 Punkte</dd></div>
+      </dl>
+    </div>
+
+    <div class="spec-group">
+      <h3>Display</h3>
+      <dl>
+        <div class="spec-row"><dt>Bildschirm</dt><dd>6,9″ Super Merino XDR, randlos bis zur Schurkante</dd></div>
+        <div class="spec-row"><dt>Auflösung</dt><dd>2868 × 1320 Wollpixel bei 460 <abbr class="abbr" title="Wolle pro Inch">WPI</abbr></dd></div>
+        <div class="spec-row"><dt>Bildrate</dt><dd>ProMäh, adaptiv 1–120 Hz</dd></div>
+        <div class="spec-row"><dt>Helligkeit</dt><dd>2'000 Nits Spitze, ablesbar bei Mittagssonne auf 2'400 m ü. M.</dd></div>
+        <div class="spec-row"><dt>Schutz</dt><dd>Hufsicheres Keramikglas, hornstossgeprüft</dd></div>
+      </dl>
+    </div>
+
+    <div class="spec-group">
+      <h3>Kamera</h3>
+      <dl>
+        <div class="spec-row"><dt>Hauptkamera</dt><dd>48 <abbr class="abbr" title="Megawoll">MW</abbr> Wollwinkel, ƒ/1.6, Fleece-Stabilisierung</dd></div>
+        <div class="spec-row"><dt>Tele</dt><dd>12 MW Blöök-Tele, 5-fach optischer Zoom bis zum Nachbarhof</dd></div>
+        <div class="spec-row"><dt>Ultraweit</dt><dd>48 MW Panoramaweide, 120° Sichtfeld</dd></div>
+        <div class="spec-row"><dt>Front</dt><dd>12 MW Selfäh-Kamera mit Flausch-Glättung</dd></div>
+        <div class="spec-row"><dt>Video</dt><dd>4K bei 120 fps in Wollby Vision, Nachtweide-Modus</dd></div>
+      </dl>
+    </div>
+
+    <div class="spec-group">
+      <h3>Akku und Laden</h3>
+      <dl>
+        <div class="spec-row"><dt>Kapazität</dt><dd>5'400 <abbr class="abbr" title="milli-Ähpere-Stunden">mÄh</abbr></dd></div>
+        <div class="spec-row"><dt>Laufzeit</dt><dd>Bis 33 h Blöök-Wiedergabe, bis 29 h Videoweide<sup>2</sup></dd></div>
+        <div class="spec-row"><dt>Laden</dt><dd>Schnellweide-Laden 45 W (50 % in 30 Min.), kabellos WollSafe 25 W</dd></div>
+        <div class="spec-row"><dt>Anschluss</dt><dd><abbr class="abbr" title="Universal Wool Bus">UWB-C</abbr> — Universal Wool Bus, Version 4</dd></div>
+      </dl>
+    </div>
+
+    <div class="spec-group">
+      <h3>Verbindung und Ortung</h3>
+      <dl>
+        <div class="spec-row"><dt>Mobilfunk</dt><dd>5Grass, überall wo Netz und Gras zusammenkommen</dd></div>
+        <div class="spec-row"><dt>WLAN</dt><dd>WoolFi 7, Tri-Band</dd></div>
+        <div class="spec-row"><dt>Bluetooth</dt><dd>Blöökitooth 6.0, Reichweite bis zum hintersten Zaunpfahl</dd></div>
+        <div class="spec-row"><dt><abbr class="abbr" title="Near Fence Communication">NFC</abbr> — Near Fence Communication</dt><dd>Zaunkontakt ohne Stromschlag, zahlt auch im Heuladen</dd></div>
+        <div class="spec-row"><dt><abbr class="abbr" title="Grazing Positioning System">GPS</abbr> — Grazing Positioning System</dt><dd>Weidegenauigkeit ± 3 Halme, Herdenortung inklusive</dd></div>
+        <div class="spec-row"><dt>SIM</dt><dd>Zwei eSchaf-Profile, kein Kartenschlitz</dd></div>
+      </dl>
+    </div>
+
+    <div class="spec-group">
+      <h3>Gehäuse, Ton und Software</h3>
+      <dl>
+        <div class="spec-row"><dt>Material</dt><dd>Wollitan Grad 5, mattes Fleece-Finish</dd></div>
+        <div class="spec-row"><dt>Masse und Gewicht</dt><dd>163 × 77,6 × 8,25 mm, 227 g <em>(entspricht 1,4 Vlieskilo im Nassgewicht)</em></dd></div>
+        <div class="spec-row"><dt>Schutzart</dt><dd>IP68 — regen-, pfützen- und tränkefest bis 6 m / 30 Min.</dd></div>
+        <div class="spec-row"><dt>Entsperren</dt><dd>FleeceID, erkennt das Gesicht auch nach der Schur</dd></div>
+        <div class="spec-row"><dt>Ton</dt><dd>Stereo-Blöök-Sound, Huftic Engine für Vibration im Huf</dd></div>
+        <div class="spec-row"><dt>Betriebssystem</dt><dd>määOS 19 mit Sprachassistentin Määri, WoolDrop und määCloud+</dd></div>
+        <div class="spec-row"><dt>Apps</dt><dd>Stall Store mit über 2 Mio. Apps, davon 12 wirklich nützlich</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Modellvergleich -->
+  <section>
+    <p class="section-label">Die drei Modelle</p>
+    <div class="table-scroll">
+      <table class="models">
+        <thead>
+          <tr>
+            <th scope="col">Modell</th>
+            <th scope="col">17e Lamm</th>
+            <th scope="col">17</th>
+            <th scope="col" class="pick">17 Pro Määx</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Chip</th><td>W17 Bäänic</td><td>W18 Bäänic</td><td class="pick">W18 Pro Bäänic</td></tr>
+          <tr><th scope="row">CPU (Chew Processing Unit)</th><td>4 Kerne</td><td>6 Kerne</td><td class="pick">6 Kerne, 4,1 GHz</td></tr>
+          <tr><th scope="row">RAM (Ruminant Access Memory)</th><td>8 GB BAAM</td><td>12 GB BAAM</td><td class="pick">16 GB BAAM</td></tr>
+          <tr><th scope="row">Weidespeicher</th><td>128 GW</td><td>256 GW</td><td class="pick">bis 1 TW</td></tr>
+          <tr><th scope="row">Display</th><td>6,1″ Merino</td><td>6,3″ Super Merino</td><td class="pick">6,9″ Super Merino XDR</td></tr>
+          <tr><th scope="row">Akku</th><td>3'800 mÄh</td><td>4'600 mÄh</td><td class="pick">5'400 mÄh</td></tr>
+          <tr><th scope="row">Kamera</th><td>1 × 48 MW</td><td>2 × 48 MW</td><td class="pick">3 Objektive, 5× Zoom</td></tr>
+          <tr><th scope="row">Gehäuse</th><td>Wollplastik</td><td>Alu-Wolle</td><td class="pick">Wollitan Grad 5</td></tr>
+          <tr class="price-row"><th scope="row">Preis</th><td>CHF 799.–</td><td>CHF 1'099.–</td><td class="pick">CHF 1'599.–</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Bestellen -->
+  <section>
+    <div class="buybar">
+      <p>
+        <strong>Eintauschprogramm:</strong> Altes Määäphone abgeben und bis CHF 420 anrechnen lassen.
+        Ohne Gerät zählt auch ein Vlies in gutem Zustand.
+      </p>
+      <button class="btn" type="button" onclick="alert('Määäh. Die Bestellung ist bei der Herdenverwaltung eingegangen.');">Beim Hirten bestellen</button>
+    </div>
+  </section>
+
+  <!-- Kleingedrucktes -->
+  <section>
+    <p class="section-label">Kleingedrucktes</p>
+    <ul class="footnotes">
+      <li>1 Weide-Abo mit Bonitätsprüfung durch den Hirten. Schwarze Schafe zahlen bar.</li>
+      <li>2 Akkulaufzeit variiert je nach Weide, Steigung, Wetter und Anzahl Hütehunde.</li>
+      <li>3 Megawoll (MW) ist keine Leistungsangabe. Bitte nicht mit Megawatt verwechseln.</li>
+      <li>4 FleeceID funktioniert bei Zwillingslämmern eingeschränkt.</li>
+      <li>5 Määäphone, Bäänic und Määri sind eingetragene Blöökmarken der Sheep Association.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <span>Shepherd German-speaking Switzerland</span> &nbsp;·&nbsp; Sheep Association &nbsp;·&nbsp; Määäphone
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var nameOut = document.getElementById('colorName');
+    var sheep = document.getElementById('phoneSheep');
+    var sources = {
+      white: document.querySelector('.header-sheep .sheep-white').getAttribute('src'),
+      black: document.querySelector('.header-sheep .sheep-black').getAttribute('src')
+    };
+
+    document.querySelectorAll('.color-dot').forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        document.querySelectorAll('.color-dot').forEach(function (d) {
+          d.setAttribute('aria-pressed', 'false');
+        });
+        dot.setAttribute('aria-pressed', 'true');
+        root.style.setProperty('--case', dot.dataset.case);
+        root.style.setProperty('--case-deep', dot.dataset.deep);
+        root.style.setProperty('--wall-1', dot.dataset.w1);
+        root.style.setProperty('--wall-2', dot.dataset.w2);
+        sheep.src = sources[dot.dataset.sheep];
+        nameOut.textContent = dot.dataset.name;
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
